@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Map</title>
+    <style>
+        #map { height: 500px; }
+        #food-info { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Food Items Based on Location</h1>
+    <div id="map"></div>
+    <div id="food-info"></div>
+
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places&callback=initMap" async defer></script>
+
+    <script>
+        let map, service, infowindow;
+
+        // Initialize the map
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 51.505, lng: -0.09 },  // Default location (London)
+                zoom: 13,
+            });
+
+            // Create the Places service
+            service = new google.maps.places.PlacesService(map);
+
+            // Add click event listener to the map
+            google.maps.event.addListener(map, 'click', function (e) {
+                const lat = e.latLng.lat();
+                const lng = e.latLng.lng();
+
+                // Fetch food-related places based on clicked location
+                getFoodPlaces(lat, lng);
+            });
+
+            infowindow = new google.maps.InfoWindow();
+        }
+
+        // Function to get food-related places using Google Places API
+        function getFoodPlaces(lat, lng) {
+            const location = new google.maps.LatLng(lat, lng);
+
+            const request = {
+                location: location,
+                radius: 1500,  // 1.5 km radius for nearby places
+                type: ['restaurant'],  // Search for restaurants (or food-related places)
+            };
+
+            service.nearbySearch(request, function (results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    displayFoodItems(results);
+                } else {
+                    alert("No food places found at this location.");
+                }
+            });
+        }
+
+        // Function to display the food places on the page
+        function displayFoodItems(places) {
+            const foodInfo = document.getElementById("food-info");
+            foodInfo.innerHTML = "<h2>Food Places:</h2><ul>";
+
+            places.forEach((place) => {
+                const name = place.name;
+                const address = place.vicinity;
+                const rating = place.rating || "N/A";
+                const url = place.website || "#";
+
+                foodInfo.innerHTML += `<li>
+                    <strong>${name}</strong><br>
+                    Address: ${address}<br>
+                    Rating: ${rating}<br>
+                    <a href="${url}" target="_blank">Visit Website</a>
+                </li>`;
+            });
+
+            foodInfo.innerHTML += "</ul>";
+        }
+            const marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            title: "Clicked location",
+        });
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const userLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            map.setCenter(userLocation);
+        });
+
+
+    </script>
+</body>
+</html>
+
+-->
+<!--  BACKEND FOR MAP
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// Serve static files (HTML, CSS, JS)
+app.use(express.static('public'));
+
+// Route to serve the main page
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
+// Example: Add a route to handle additional logic if necessary
+app.get('/some-api-endpoint', (req, res) => {
+    // Custom logic here
+    res.json({ message: 'Custom API response' });
+});
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+});
+
+-->
+
+
+
+
+<!--
+IN FILE model/Food.js
+////////////////////
+const mongoose = require('mongoose');
+
+const foodSchema = new mongoose.Schema({
+  name: String,
+  description: String,
+  location: {
+    type: { type: String, default: 'Point' }, // GeoJSON point type
+    coordinates: [Number] // [longitude, latitude]
+  }
+});
+
+foodSchema.index({ location: '2dsphere' }); // This index allows MongoDB to perform geospatial queries.
+
+const Food = mongoose.model('Food', foodSchema);
+
+module.exports = Food;
+///////////////////////////////////////
+IN FILE server.js
+////////////////
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const Food = require('./models/Food'); // Import the Food model
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(bodyParser.json());
+
+// MongoDB connection
+mongoose.connect('mongodb://localhost/foodmap', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.log('MongoDB connection error:', err));
+
+// API endpoint to get food items based on location
+app.get('/get-food-items', async (req, res) => {
+  const { lat, lng } = req.query;
+
+  if (!lat || !lng) {
+    return res.status(400).json({ error: 'Latitude and longitude are required' });
+  }
+
+  try {
+    // Find food items within a certain distance of the provided coordinates
+    const foodItems = await Food.find({
+      location: {
+        $near: {
+          $geometry: {
+            type: 'Point',
+            coordinates: [parseFloat(lng), parseFloat(lat)] // [longitude, latitude]
+          },
+          $maxDistance: 5000 // 5 km
+        }
+      }
+    });
+
+    // Return the food items
+    res.json(foodItems);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error fetching food items' });
+  }
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+//////////////////
+IN FILE seed.js
+const mongoose = require('mongoose');
+const Food = require('./models/Food');
+
+// MongoDB connection
+mongoose.connect('mongodb://localhost/foodmap', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(async () => {
+  // Create sample food items
+  await Food.create([
+    {
+      name: 'Pizza',
+      description: 'Delicious cheese and tomato pizza',
+      location: {
+        type: 'Point',
+        coordinates: [-0.09, 51.505] // Coordinates for London
+      }
+    },
+    {
+      name: 'Sushi',
+      description: 'Fresh sushi with salmon',
+      location: {
+        type: 'Point',
+        coordinates: [-0.12, 51.51] // Coordinates for a different location in London
+      }
+    }
+  ]);
+  console.log('Sample food items created!');
+  mongoose.disconnect();
+})
+.catch(err => console.log('Error seeding database:', err));
+///////////////////////////////// run it using " node seed.js "
+Now, with the Node.js server running, and some food items in the database, you can open your browser or Postman and test the endpoint.
+
+For example:
+
+bash
+GET http://localhost:3000/get-food-items?lat=51.505&lng=-0.09
+This should return nearby food items in the JSON format.
+///////////////////////////////////////////
+IN FILE maps.html
+////////////
+map.on('click', function(e) {
+    var lat = e.latlng.lat;
+    var lng = e.latlng.lng;
+
+    // Send the coordinates to the backend
+    fetch(`/get-food-items?lat=${lat}&lng=${lng}`)
+        .then(response => response.json())
+        .then(data => {
+            displayFoodItems(data);
+        })
+        .catch(error => console.log(error));
+});
+
+
+-->

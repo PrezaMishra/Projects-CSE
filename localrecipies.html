@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Recipe</title>
+  <meta name="title" content="Zaika - Your Guide to nearby Culinary Treasures">
+  <meta name="description" content="This is a local cuisine finder website developed primitively">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="image" href="/images/hero-slider-1.jpg">
+  <link rel="preload" as="image" href="/images/hero-slider-2.jpg">
+  <link rel="preload" as="image" href="/images/hero-slider-3.jpg">
+
+  <style>
+    /* General Reset */
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #250114;
+      color: #333;
+      text-align: center;
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+
+    /* Header Styling */
+    .header1 {
+      background-color: hsl(38, 61%, 73%);
+      padding: 20px;
+      font-size: 30px;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-transform: uppercase;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 2px;
+    }
+
+    /* Menu Container */
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      padding: 20px;
+      max-height: 200vh;
+      /* Limit the height of the menu container */
+      overflow-y: auto;
+      /* Enable vertical scroll within the menu container */
+    }
+
+    /* Flip Card Styles */
+    .flip-card {
+      perspective: 1000px;
+      width: 400px;
+      height: 500px;
+      margin: 10px;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease-in-out;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+    }
+
+    /* Front of the Card */
+    .flip-card-front {
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      box-sizing: border-box;
+      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
+    }
+
+    .flip-card-front img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .flip-card-front h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #333;
+      font-weight: 700;
+    }
+
+    .flip-card-front p {
+      font-size: 14px;
+      margin-bottom: 15px;
+      color: #666;
+    }
+
+    /* Back of the Card */
+    .flip-card-back {
+      background-image: linear-gradient(135deg, rgba(38, 63, 52, 0.8), rgba(238, 64, 66, 0.6));
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+      transform: rotateY(180deg);
+      box-sizing: border-box;
+      overflow-y: auto;
+      /* Make sure the back of the card is scrollable if necessary */
+    }
+
+    .flip-card-back h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .flip-card-back p {
+      font-size: 10px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .flip-card-back .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffcc00;
+    }
+
+    .flip-card-back .ingredients,
+    .flip-card-back .instructions {
+      font-size: 14px;
+      margin-top: 15px;
+    }
+
+    .flip-card-back .ingredients {
+      font-weight: bold;
+      color: #ffcc00;
+    }
+
+    .flip-card-back .instructions {
+      font-size: 14px;
+      color: #e0e0e0;
+    }
+
+    /* Hover effects for cards */
+    .flip-card:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="/images/mainlogo.png" width="160" height="50" alt="Zaika - Home">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <a href="/index2" class="logo">
+          <img src="/images/mainlogo.png" width="160" height="50" alt="Zaika - Home">
+        </a>
+      </nav>
+
+      <a href="/index2" class="btn btn-secondary">
+        <span class="text text-1">Back</span>
+
+        <span class="text text-2" aria-hidden="true">Back</span>
+      </a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+
+    </div>
+  </header>
+
+
+  <main>
+    <article>
+
+      <div class="header1">Local Recipes</div>
+      <div class="separator"></div>
+      <!-- Menu Container -->
+      <div class="menu-container">
+        <!-- Flip Card 1 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="/images/localrecipies/bisibele.png" alt="Bisi Bele Bath">
+              <h3>Bisi Bele Bath</h3>
+              <p>A flavorful one-pot meal from Bengaluru</p>
+            </div>
+            <div class="flip-card-back">
+              <h3>Bisi Bele Bath</h3>
+              <p class="ingredients">Ingredients:</p>
+              <p class="instructions">1 cup rice ,½ cup toor dal,Mixed vegetables
+                <br>Spices: coriander seeds, cumin seeds, dry red chilies, chana dal, ½ cup grated coconut
+                Tamarind extract: 2 tbsp ,Jaggery: 1 tsp ,Mustard seeds, curry leaves, asafoetida
+
+              <p class="instructions">Preparation:<br>
+                1.Cook rice, dal, and vegetables.<br>
+                2.Make spice paste.Combine rice, dal, veggies, tamarind, jaggery, and paste.<br>
+                3. Simmer 5-10 mins.Temper with mustard, curry leaves, and asafoetida<br>
+
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Flip Card 2 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="/images/localrecipies/ragimudde.jpg" alt="Anjan Fry">
+              <h3>Ragi Mudde</h3>
+              <p>A traditional, nutritious staple often served with sambar or spicy mutton curry</p>
+            </div>
+            <div class="flip-card-back">
+              <h3>Ragi Mudde</h3>
+              <p class="ingredients">Ingredients:</p>
+              <p class="instructions">1 cup ragi flour, 2 cups water, Salt to taste</p>
+              <p class="instructions">1. Boil water with a pinch of salt.<br> 2. Gradually add ragi flour, stirring to
+                avoid lumps<br> 3. Cook on low heat, stirring to form a smooth dough. <br>4. Once cool, shape the dough
+                into balls.<br>5. Serve hot with sambar, curry, or yogurt.</p>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Flip Card 3 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="/images/localrecipies/pandicurry.jpg" alt="Pandi Curry (Coorg Pork Curry)">
+              <h3>Pandi Curry (Coorg Pork Curry)</h3>
+              <p>A spicy, flavorful pork curry from Coorg, infused with kachampuli (Coorg vinegar)</p>
+            </div>
+            <div class="flip-card-back">
+              <h3>Pandi Curry (Coorg Pork Curry)</h3>
+              <p class="ingredients">Ingredients:</p>
+              <p class="instructions">Pork, onions, garlic, ginger, green chilies, curry leaves, kachampuli, and spices.
+              </p>
+              <p class="instructions">1. Marinate pork with spices and kachampuli.<br>2.Sauté onions, garlic, and
+                spices.<br> 3.Cook the marinated pork until tender.<br>4.Add kachampuli and simmer.
+                Serve with rice or roti</p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="/images/localrecipies/kadambattu.jpg" alt="Anjan Fry">
+              <h3>Kadambattu</h3>
+              <p>A soft, steamed rice ball, typically served with spicy curry or chutney</p>
+            </div>
+            <div class="flip-card-back">
+              <h3>Kadambattu</h3>
+              <p class="ingredients">Ingredients:</p>
+              <p class="instructions"> Rice flour, water, salt.</p>
+              <p class="instructions">1. Boil water with salt. 2. Gradually add rice flour, stirring to form dough. 3.
+                Shape the dough into small balls. 4. Steam the balls until cooked.
+                Serve with curry or chutney.</p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="/images/localrecipies/joladrotii.jpg" alt="Jolada Roti">
+              <h3>Jolada Roti</h3>
+              <p>A traditional roti made from jowar (sorghum), often served with curry or chutney.</p>
+            </div>
+            <div class="flip-card-back">
+              <h3>Jolada Roti</h3>
+              <p>Fried to crispy perfection, an unforgettable flavor!</p>
+              <p class="ingredients">Ingredients:</p>
+              <p class="instructions">Anjan (Fish), Spices, Rice Flour</p>
+              <p class="instructions">1.Mix jowar flour with water and salt to form a dough.<br>2.Roll the dough into
+                flat rounds.<br> 3.Cook on a hot griddle until golden brown.
+                Serve with curry or chutney.</p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="/images/localrecipies/Badanekai Yennegai.jpg" alt="Enne Badnekai">
+              <h3>Enne Badnekai</h3>
+              <p>A spicy, stuffed brinjal curry, popular in North Karnataka.</p>
+            </div>
+            <div class="flip-card-back">
+              <h3>Enne Badnekai</h3>
+              <p class="ingredients">Ingredients:</p>
+              <p class="instructions">Brinjal (eggplant), onion, garlic, tamarind, spices (coriander, cumin, chili
+                powder)</p>
+              <p class="instructions">1.Stuff brinjals with a spicy onion mixture.<br>
+                2.Cook stuffed brinjals in oil until tender.<br>
+                3.Add tamarind and spices, cook until flavors meld.
+                Serve with rice or roti.</p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="/images/localrecipies/bangda.jpg" alt="Bangda Fry">
+              <h3>Bangda Fry(Mackerel Fry)</h3>
+              <p>A popular coastal dish of crispy fried mackerel, marinated with spices.</p>
+            </div>
+            <div class="flip-card-back">
+              <h3>Bangda Fry(Mackerel Fry)</h3>
+              <p class="ingredients">Ingredients:</p>
+              <p class="instructions">Mackerel fish, turmeric, red chili powder, garlic, ginger, lime, salt.</p>
+              <p class="instructions">1.Marinate the mackerel with spices and lime for 30 minutes.<br>
+                2.Heat oil and fry the fish until crispy and golden brown.
+                Serve with rice or curry.<br>
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="/images/localrecipies/Fishgassi.jpg" alt="Fish Gassi">
+              <h3>Fish Gassi</h3>
+              <p>A A rich and flavorful fish curry with a coconut base, commonly enjoyed in Udupi.</p>
+            </div>
+            <div class="flip-card-back">
+              <h3>Fish Gassi</h3>
+              <p class="ingredients">Ingredients:</p>
+              <p class="instructions">Fish (such as kingfish or mackerel), coconut, tamarind, onions, tomatoes, garlic,
+                ginger, spices</p>
+              <p class="instructions">1.Grind coconut with spices to make a paste.<br>
+                2.Cook onions, garlic, and tomatoes, then add the coconut paste and tamarind.<br>
+                3.Add fish, cook until tender.
+                Serve with rice or neer dosa.</p>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </article>
+  </main>
+  <footer class="footer section has-bg-image text-center"
+    style="background-image: url('./assets/images/footer-bg.jpg')">
+    <div class="container">
+
+      <div class="footer-top grid-list">
+
+        <div class="footer-brand has-before has-after">
+
+          <a href="#" class="logo">
+            <img src="/images/mainlogo.png" width="160" height="50" loading="lazy" alt="ZAIKA home">
+          </a>
+          <a href="mailto:Zaika@gamil.com" class="body-4 contact-link">Zaika@gamil.com</a>
+
+          <div class="wrapper">
+            <div class="separator"></div>
+            <div class="separator"></div>
+            <div class="separator"></div>
+          </div>
+
+          <p class="title-1">Get News & Offers</p>
+
+          <p class="label-1">
+            Subscribe us & Get <span class="span">25% Off.</span>
+          </p>
+
+          <form action="" class="input-wrapper">
+            <div class="icon-wrapper">
+              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+
+              <input type="email" name="email_address" placeholder="Your email" autocomplete="off" class="input-field">
+            </div>
+
+            <button type="submit" class="btn btn-secondary">
+              <span class="text text-1">Subscribe</span>
+
+              <span class="text text-2" aria-hidden="true">Subscribe</span>
+            </button>
+          </form>
+
+        </div>
+
+        <ul class="footer-list">
+
+          <li>
+            <a href="#logo" class="label-2 footer-link hover-underline">Home</a>
+          </li>
+
+          <li>
+            <a href="#menu" class="label-2 footer-link hover-underline">Menus</a>
+          </li>
+
+          <li>
+            <a href="#about" class="label-2 footer-link hover-underline">About Us</a>
+          </li>
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+          <li>
+            <a href="https://facebook.com" class="label-2 footer-link hover-underline">Facebook</a>
+          </li>
+
+          <li>
+            <a href="https://instagram.com" class="label-2 footer-link hover-underline">Instagram</a>
+          </li>
+
+          <li>
+            <a href="https://twitter.com" class="label-2 footer-link hover-underline">Twitter</a>
+          </li>
+
+          <li>
+            <a href="https://youtube.com" class="label-2 footer-link hover-underline">Youtube</a>
+          </li>
+
+          <li>
+            <a href="www.google.com" class="label-2 footer-link hover-underline">Google Map</a>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2024 Zaika . All Rights Reserved </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!--  - #BACK TO TOP -->
+
+  <a href="#top" class="back-top-btn active" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+  </a>
+  <script src="/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script>
+    document.getElementById('btn btn-secondary').onclick = function () {
+      document.getElementById('popup').style.display = 'block';
+    }
+
+    document.getElementById('closePopup').onclick = function () {
+      document.getElementById('popup').style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+      if (event.target == document.getElementById('popup')) {
+        document.getElementById('popup').style.display = 'none';
+      }
+    }
+
+    document.getElementById('adminLogin').onclick = function () {
+      window.location.href = 'adminlogin.html'; // Redirect to admin login page
+    }
+
+    document.getElementById('userLogin').onclick = function () {
+      window.location.href = 'userlogin.html'; // Redirect to user login page
+    }
+
+    document.getElementById('signUp').onclick = function () {
+      window.location.href = 'sign_up.html'; // Redirect to sign up page
+    }
+  </script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  /*body {
+    font-family: ;
+  }*/
+
+    .tab {
+    overflow: hidden;
+    background-color: #250114;
+  }
+
+  .tab.container {
+    justify-content: space-between;
+    align-items: right;
+    max-width: unset;
+  }
+
+  .tab button {
+    align-items: center;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 20px;
+    padding: 20px 60px;
+    transition: 0.3s;
+    font-size: 25px;
+  }
+
+  .tab button:hover {
+    background-color: rgb(140, 111, 75);
+  }
+
+  .tablinks {
+    color: rgb(240, 241, 241);
+  }
+
+ 
+  .tab button.active {
+    background-color: #511212;
+  }
+
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zaika - Appetizers</title>
+  <meta name="title" content="Zaika - Your Guide to nearby Culinary Treasures">
+  <meta name="description" content="This is a local cuisine finder website developed primitively">
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="image" href="/images/hero-slider-1.jpg">
+  <link rel="preload" as="image" href="/images/hero-slider-2.jpg">
+  <link rel="preload" as="image" href="/images/hero-slider-3.jpg">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #250114;
+    }
+
+    .login-form {
+      width: 300px;
+      margin: 100px auto;
+      padding: 30px;
+      background-color: rgb(76, 76, 76);
+      box-shadow: 0 0 10px rgba(211, 194, 194, 0.1);
+      border-radius: 5px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .submit-btn {
+      background-color: green;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: rgb(11, 83, 11);
+    }
+
+    .cancel-btn {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .cancel-btn:hover {
+      background-color: rgb(95, 14, 14);
+    }
+  </style>
+</head>
+
+<body id="top">
+
+  <!-- 
+   - #PRELOADER
+ -->
+
+  <div class="preload" data-preaload>
+    <div class="circle"></div>
+    <p class="text">ZAIKA</p>
+  </div>
+
+
+
+
+
+  <!-- 
+   - #TOP BAR
+ -->
+
+  <div class="topbar">
+    <div class="container">
+      <div class="separator"></div>
+
+      <div class="separator"></div>
+
+      <a href="mailto:booking@restaurant.com" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+        </div>
+
+        <span class="span">Zaika.@gmail.com</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- 
+   - #HEADER
+ -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="/images/mainlogo.png" width="160" height="50" alt="Zaika - Home">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <a href="/index2" class="logo">
+          <img src="/images/mainlogo.png" width="160" height="50" alt="Zaika - Home">
+        </a>
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="#home" class="navbar-link hover-underline active">
+              <div class="separator"></div>
+
+              <span class="span">Home</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#menu" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Menus</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#about" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">About Us</span>
+            </a>
+          </li>
+          <li class="navbar-item">
+            <a href="#" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Contact</span>
+            </a>
+          </li>
+          <li class="navbar-item">
+            <a href="#" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Near Me</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <a href="/index2" class="btn btn-secondary">
+        <span class="text text-1">Back</span>
+
+        <span class="text text-2" aria-hidden="true">Back</span>
+      </a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+       - #HERO
+     -->
+
+      <section class="hero text-center" aria-label="home" id="home">
+
+        <ul class="hero-slider" data-hero-slider>
+
+          <li class="slider-item active" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="/images/hero-slider-1.jpg" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal">Tradational & Hygine</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+              For the love of <br>
+              delicious food
+            </h1>
+            <a href="#" class="btn btn-primary slider-reveal">
+              <span class="text text-1">Appetizers</span>
+
+              <span class="text text-2" aria-hidden="true">Appetizers</span>
+
+
+            </a>
+
+          </li>
+
+          <li class="slider-item" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="/images/hero-slider-2.jpg" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal">delightful experience</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+              Flavors Inspired by <br>
+              the Seasons
+            </h1>
+            <a href="#" class="btn btn-primary slider-reveal">
+              <span class="text text-1">Appetizers</span>
+
+              <span class="text text-2" aria-hidden="true">Appetizers</span>
+            </a>
+
+
+          </li>
+
+          <li class="slider-item" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="/images/hero-slider-3.jpg" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal">amazing & delicious</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+              Where every flavor <br>
+              tells a story
+            </h1>
+            <a href="#" class="btn btn-primary slider-reveal">
+              <span class="text text-1">Appetizers</span>
+
+              <span class="text text-2" aria-hidden="true">Appetizers</span>
+            </a>
+
+
+          </li>
+
+        </ul>
+
+        <button class="slider-btn prev" aria-label="slide to previous" data-prev-btn>
+          <ion-icon name="chevron-back"></ion-icon>
+        </button>
+
+        <button class="slider-btn next" aria-label="slide to next" data-next-btn>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </button>
+
+        <a href="#" class="hero-btn has-after">
+          <img src="/images/map.gif" width="50" height="60" alt="booking icon">
+
+          <span class="label-2 text-center span">Open Maps</span>
+        </a>
+
+      </section>
+      <!--breakfast-->
+      <section class="section menu" aria-label="menu-label" id="menu">
+        <div class="container">
+          
+        </div>
+        <div class="separator"></div>
+        <div class="separator"></div>
+        <div class="separator"></div>
+        <div class="separator"></div>
+        <img src="/images/shape-2.png" width="343" height="345" loading="lazy" alt="shape" class="shape shape-2 move-anim">
+          <img src="/images/shape-1.png" width="246" height="412" loading="lazy" alt="shape" class="shape shape-1 move-anim">
+
+        <!--VEGETARIAN-->
+
+        <section class="section menu" aria-label="menu-label" id="menu">
+          <div class="container">
+              <ul class="grid-list">
+                  <li>
+                      <div class="menu-card hover:card">
+                          <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                              <img src="\images\PANEER-TIKKA.png" width="200" height="200" loading="lazy" alt="PANEER TIKKA" class="img-cover">
+                          </figure>
+                          <div>
+                              <div class="title-wrapper">
+                                  <h3 class="title-3">
+                                      <a href="#" class="card-title">PANEER TIKKA</a>
+                                  </h3>
+                              </div>
+                              <p class="card-text label-1">
+                                  This North Indian tikka variety consists of a combination of marinated paneer cheese and vegetables that are cooked in a tandoor - a traditional Indian oven. This vegetarian version of tikka is based on paneer, a crumbly cheese with a soft texture.
+                              </p>
+                          </div>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="menu-card hover:card">
+                          <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                              <img src="\images\gobi-chilli2.jpg" width="200" height="200" loading="lazy" alt="GOBI MANCHURIAN" class="img-cover">
+                          </figure>
+                          <div>
+                              <div class="title-wrapper">
+                                  <h3 class="title-3">
+                                      <a href="#" class="card-title">GOBI MANCHURIAN</a>
+                                  </h3>
+                              </div>
+                              <p class="card-text label-1">
+                                  Gobi manchurian is a traditional Indo-Chinese dish consisting of fried cauliflower (gobi) that’s tossed in a sweet and spicy sauce (manchurian). There are two versions of the dish – dry and in gravy.
+                              </p>
+                          </div>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="menu-card hover:card">
+                          <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                              <img src="\images\carrot-kosambari.jpg" width="200" height="200" loading="lazy" alt="Kosambari" class="img-cover">
+                          </figure>
+                          <div>
+                              <div class="title-wrapper">
+                                  <h3 class="title-3">
+                                      <a href="#" class="card-title">KOSAMBARI</a>
+                                  </h3>
+                              </div>
+                              <p class="card-text label-1">
+                                  Kosambari is the most popular salad from the Indian state of Karnataka. The salad is made with split legumes such as bengal gram and green gram, and it is additionally seasoned with mustard seeds.
+                              </p>
+                          </div>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="menu-card hover:card">
+                          <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                              <img src="\images\kurkuri-bhindi-recipe-6.jpg" width="200" height="200" loading="lazy" alt="Kurkuri bhindi" class="img-cover">
+                          </figure>
+                          <div>
+                              <div class="title-wrapper">
+                                  <h3 class="title-3">
+                                      <a href="#" class="card-title">KURKURI BHINDI</a>
+                                  </h3>
+                              </div>
+                              <p class="card-text label-1">
+                                  Kurkuri bhindi recipe – thinly sliced okra are coated and marinated with besan and spices. Then deep fried into the hot oil till crisp. At the end, sprinkling of chaat masala adds another flavor punch.
+                              </p>
+                          </div>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+      </section>
+      
+        <!--NON VEGETARIAN-->
+        <div id="Non-Vegetarian">
+          <h2>Non-Vegetarian</h2>
+          <section class="section menu" aria-label="menu-label" id="menu">
+            <div class="container">
+                <ul class="grid-list">
+                    <li>
+                        <div class="menu-card hover:card">
+                            <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                                <img src="\images\Chicken-Tikka.jpg" width="200" height="200" loading="lazy" alt="Chicken Tikka" class="img-cover">
+                            </figure>
+                            <div>
+                                <div class="title-wrapper">
+                                    <h3 class="title-3">
+                                        <a href="#" class="card-title">Chicken Tikka</a>
+                                    </h3>
+                                </div>
+                                <p class="card-text label-1">
+                                    <br> Chicken tikka is a popular Indian dish consisting of small, boneless pieces of chicken marinated in a yogurt and spice blend, then grilled on skewers, typically in a tandoor oven, giving it a smoky flavor.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="menu-card hover:card">
+                            <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                                <img src="\images\chicken seekh 1.jpg" width="200" height="200" loading="lazy" alt="Chicken Seekh Kebab" class="img-cover">
+                            </figure>
+                            <div>
+                                <div class="title-wrapper">
+                                    <h3 class="title-3">
+                                        <a href="#" class="card-title">Chicken Seekh Kebab</a>
+                                    </h3>
+                                </div>
+                                <p class="card-text label-1">
+                                    <br> Minced meat mixed with spices and herbs, shaped into skewers and grilled. A smoky, succulent dish perfect for appetizers.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="menu-card hover:card">
+                            <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                                <img src="\images\amritsari_fish_fry1.jpg" width="200" height="200" loading="lazy" alt="Fish Amritsari" class="img-cover">
+                            </figure>
+                            <div>
+                                <div class="title-wrapper">
+                                    <h3 class="title-3">
+                                        <a href="#" class="card-title">Fish Amritsari</a>
+                                    </h3>
+                                </div>
+                                <p class="card-text label-1">
+                                    <br> Spicy fish fillets coated in a gram flour batter and deep-fried to crispy perfection. A popular, tangy seafood snack from Punjab.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="menu-card hover:card">
+                            <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                                <img src="\images\PRAWANSKOLIWADA1.jpg" width="200" height="200" loading="lazy" alt="Prawn Koliwada" class="img-cover">
+                            </figure>
+                            <div>
+                                <div class="title-wrapper">
+                                    <h3 class="title-3">
+                                        <a href="#" class="card-title">Prawn Koliwada</a>
+                                    </h3>
+                                </div>
+                                <p class="card-text label-1">
+                                    <br> Prawns marinated in spices and deep-fried in a crispy batter. A crunchy, flavorful appetizer often served with chutney.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        </div>
+      </section>
+    </article>
+  </main>
+             
+        
+
+        <!-- 
+- #BACK TO TOP
+-->
+
+        <a href="#top" class="back-top-btn active" aria-label="back to top" data-back-top-btn>
+          <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+        </a>
+
+        <!-- 
+- custom js link
+-->
+        <script src="/js/script.js"></script>
+
+        <!-- 
+- ionicon link
+-->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

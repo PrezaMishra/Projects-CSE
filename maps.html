@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zaika - Map</title>
+  <meta name="title" content="Zaika - Your Guide to nearby Culinary Treasures">
+  <meta name="description" content="This is a local cuisine finder website developed primitively">
+
+  <!-- Favicon and Fonts -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preload" as="image" href="/images/hero-slider-1.jpg">
+  <link rel="preload" as="image" href="/images/hero-slider-2.jpg">
+  <link rel="preload" as="image" href="/images/hero-slider-3.jpg">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 500px;
+    }
+
+    #food-info {
+      margin-top: 20px;
+    }
+
+    :root {
+      --map-tiles-filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .map-tiles {
+        filter: var(--map-tiles-filter, dark);
+      }
+    }
+  </style>
+  <style>
+    /* Custom styles for the food information card */
+    #info-card {
+      width: 250px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      display: none;
+      position: absolute;
+      z-index: 10000;
+      background: rgb(81, 12, 12);
+      border: 1px solid black;
+      padding: 10px;
+      border-radius: 5px;
+      opacity: 0.75;
+    }
+  </style>
+</head>
+
+<body id="top">
+  <!-- Preloader -->
+  <div class="preload" data-preaload>
+    <div class="circle"></div>
+    <p class="text">ZAIKA</p>
+  </div>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="separator"></div>
+      <div class="separator"></div>
+      <a href="mailto:booking@restaurant.com" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">Zaika.@gmail.com</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" data-header>
+    <div class="container">
+      <a href="#" class="logo">
+        <img src="/images/mainlogo.png" width="160" height="50" alt="Zaika - Home">
+      </a>
+      <nav class="navbar" data-navbar>
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+        <a href="#" class="logo">
+          <img src="/images/mainlogo.png" width="160" height="50" alt="Zaika - Home">
+        </a>
+      </nav>
+      <a href="/index2" class="btn btn-secondary">
+        <span class="text text-1">Go Back</span>
+        <span class="text text-2" aria-hidden="true">Home</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero text-center" aria-label="home" id="home">
+    <ul class="hero-slider" data-hero-slider>
+      <li class="slider-item active" data-hero-slider-item>
+        <div class="slider-bg">
+          <img src="/images/hero-slider-1.jpg" width="1880" height="950" alt="" class="img-cover">
+        </div>
+        <p class="label-2 section-subtitle slider-reveal">Tradational & Hygine</p>
+        <h1 class="display-1 hero-title slider-reveal">
+          For the love of <br>
+          delicious food
+        </h1>
+        <a href="#" class="btn btn-primary slider-reveal">
+          <span class="text text-1">View Dishes</span>
+          <span class="text text-2" aria-hidden="true">View Dishes</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Map Section -->
+
+  <!--<section id="food-map">
+    <h1>Food Items Based on Location</h1>
+    <div id="map"></div>
+    <div id="food-info"></div>
+  </section>-->
+  <div id="map" style="height: 500px; width: 100%;"></div>
+  <div id="info-card">
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer section has-bg-image text-center" style="background-image: url('/images/footer-bg.jpg')">
+    <div class="container">
+      <div class="footer-top grid-list">
+        <div class="footer-brand has-before has-after">
+          <a href="#" class="logo">
+            <img src="/images/mainlogo.png" width="160" height="50" loading="lazy" alt="ZAIKA home">
+          </a>
+          <a href="mailto:Zaika@gamil.com" class="body-4 contact-link">Zaika@gamil.com</a>
+          <div class="wrapper">
+            <div class="separator"></div>
+            <div class="separator"></div>
+            <div class="separator"></div>
+          </div>
+          <p class="title-1">Get News & Offers</p>
+          <p class="label-1">
+            Subscribe us & Get <span class="span">25% Off.</span>
+          </p>
+          <form action="" class="input-wrapper">
+            <div class="icon-wrapper">
+              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+              <input type="email" name="email_address" placeholder="Your email" autocomplete="off" class="input-field">
+            </div>
+            <button type="submit" class="btn btn-secondary">
+              <span class="text text-1">Subscribe</span>
+              <span class="text text-2" aria-hidden="true">Subscribe</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#top" class="back-top-btn active" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+  </a>
+
+  <!-- Scripts -->
+  <script src="/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([12.9716, 77.5946], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    const infoCard = document.getElementById('info-card');
+
+    async function fetchFooditems(lat, lng) {
+      try {
+        const response = await fetch(`http://localhost:3000/get-food-items?lat=${lat}&lng=${lng}`);
+        const data = await response.json();
+        console.log(data);
+
+        /*map.eachLayer((layer) => {
+          if (layer instanceof L.Marker) {
+            map.removeLayer(layer);
+          }
+        });*/
+
+        data.forEach((item) => {
+          const [lng, lat] = item.location.coordinates;
+          const marker = L.marker([lat, lng]).addTo(map);
+
+          marker.on('mouseover', (e) => {
+            infoCard.style.display = 'block';
+            infoCard.style.left = `${e.originalEvent.pageX + 15}px`;
+            infoCard.style.top = `${e.originalEvent.pageY + 15}px`;
+            infoCard.innerHTML = `
+          <h4>${item.name}</h4>
+          <p>${item.description}</p>
+        `;
+          });
+
+          marker.on('mouseout', () => {
+            infoCard.style.display = 'none';
+          });
+        });
+      } catch (error) {
+        console.error('Error fetching food items:', error);
+      }
+    }
+    fetchFooditems(12.9716, 77.5946);
+  </script>
+
+</body>
+
+</html>

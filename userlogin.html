@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zaika - UserLogin</title>
+  <meta name="title" content="Zaika - Your Guide to nearby Culinary Treasures">
+  <meta name="description" content="This is a local cuisine finder website developed primitively">
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <link rel="preload" as="image" href="./assets/images/hero-slider-1.jpg">
+  <link rel="preload" as="image" href="./assets/images/hero-slider-2.jpg">
+  <link rel="preload" as="image" href="./assets/images/hero-slider-3.jpg">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #250114;
+    }
+
+    .login-form {
+      width: 300px;
+      margin: 100px auto;
+      padding: 30px;
+      background-color: rgb(76, 76, 76);
+      box-shadow: 0 0 10px rgba(211, 194, 194, 0.1);
+      border-radius: 5px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .submit-btn {
+      background-color: green;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: rgb(11, 83, 11);
+    }
+
+    .cancel-btn {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .cancel-btn:hover {
+      background-color: rgb(95, 14, 14);
+    }
+  </style>
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #PRELOADER
+  -->
+
+  <div class="preload" data-preaload>
+    <div class="circle"></div>
+    <p class="text">ZAIKA</p>
+  </div>
+
+
+
+
+
+  <!-- 
+    - #TOP BAR
+  -->
+
+  <div class="topbar">
+    <div class="container">
+      <div class="separator"></div>
+
+      <div class="separator"></div>
+
+      <a href="mailto:booking@restaurant.com" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+        </div>
+
+        <span class="span">Zaika.@gmail.com</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="./assets/images/mainlogo.png" width="160" height="50" alt="Zaika - Home">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <a href="/index2" class="logo">
+          <img src="./assets/images/mainlogo.png" width="160" height="50" alt="Zaika - Home">
+        </a>
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="#home" class="navbar-link hover-underline active">
+              <div class="separator"></div>
+
+              <span class="span">Home</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#menu" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Menus</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#about" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">About Us</span>
+            </a>
+          </li>
+          <li class="navbar-item">
+            <a href="#" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Contact</span>
+            </a>
+          </li>
+          <li class="navbar-item">
+            <a href="#" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Near Me</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <a href="/index2" class="btn btn-secondary">
+        <span class="text text-1">Back</span>
+
+        <span class="text text-2" aria-hidden="true">Back</span>
+      </a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero text-center" aria-label="home" id="home">
+
+        <ul class="hero-slider" data-hero-slider>
+
+          <li class="slider-item active" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="./assets/images/hero-slider-1.jpg" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal">Tradational & Hygine</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+              For the love of <br>
+              delicious food
+            </h1>
+
+
+            <a href="#" class="btn btn-primary slider-reveal">
+              <span class="text text-1">View Dishes</span>
+
+              <span class="text text-2" aria-hidden="true">View Dishes</span>
+            </a>
+
+          </li>
+
+          <li class="slider-item" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="./assets/images/hero-slider-2.jpg" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal">delightful experience</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+              Flavors Inspired by <br>
+              the Seasons
+            </h1>
+
+
+            <a href="#" class="btn btn-primary slider-reveal">
+              <span class="text text-1">View Dishes</span>
+
+              <span class="text text-2" aria-hidden="true">View Dishes</span>
+            </a>
+
+          </li>
+
+          <li class="slider-item" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="./assets/images/hero-slider-3.jpg" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal">amazing & delicious</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+              Where every flavor <br>
+              tells a story
+            </h1>
+
+
+            <a href="#" class="btn btn-primary slider-reveal">
+              <span class="text text-1">View Dishes</span>
+
+              <span class="text text-2" aria-hidden="true">View Dishes</span>
+            </a>
+
+          </li>
+
+        </ul>
+
+        <button class="slider-btn prev" aria-label="slide to previous" data-prev-btn>
+          <ion-icon name="chevron-back"></ion-icon>
+        </button>
+
+        <button class="slider-btn next" aria-label="slide to next" data-next-btn>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </button>
+
+        <a href="#" class="hero-btn has-after">
+          <img src="./assets/images/map.gif" width="50" height="60" alt="booking icon">
+
+          <span class="label-2 text-center span">Open Maps</span>
+        </a>
+
+      </section>
+      <!--LOGIN-->
+      <div class="login-form">
+        <h2>Login Page</h2>
+        <form id="loginForm" method="POST" action="http://localhost:3000/signup">
+          <input type="text" id="username" name="username" placeholder="Enter Username" required />
+          <input type="email" id="email" name="email" placeholder="Enter Email" required />
+          <input type="password" id="password" name="password" placeholder="Enter Password" required />
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </div>
+
+      <!-- 
+    - #FOOTER
+  -->
+
+      <footer class="footer section has-bg-image text-center"
+        style="background-image: url('./assets/images/footer-bg.jpg')">
+        <div class="container">
+
+          <div class="footer-top grid-list">
+
+            <div class="footer-brand has-before has-after">
+
+              <a href="#" class="logo">
+                <img src="./assets/images/mainlogo.png" width="160" height="50" loading="lazy" alt="ZAIKA home">
+              </a>
+              <a href="mailto:Zaika@gamil.com" class="body-4 contact-link">Zaika@gamil.com</a>
+
+              <div class="wrapper">
+                <div class="separator"></div>
+                <div class="separator"></div>
+                <div class="separator"></div>
+              </div>
+
+              <p class="title-1">Get News & Offers</p>
+
+              <p class="label-1">
+                Subscribe us & Get <span class="span">25% Off.</span>
+              </p>
+
+              <form action="" class="input-wrapper">
+                <div class="icon-wrapper">
+                  <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+
+                  <input type="email" name="email_address" placeholder="Your email" autocomplete="off"
+                    class="input-field">
+                </div>
+
+                <button type="submit" class="btn btn-secondary">
+                  <span class="text text-1">Subscribe</span>
+
+                  <span class="text text-2" aria-hidden="true">Subscribe</span>
+                </button>
+              </form>
+
+            </div>
+
+            <ul class="footer-list">
+
+              <li>
+                <a href="#logo" class="label-2 footer-link hover-underline">Home</a>
+              </li>
+
+              <li>
+                <a href="#menu" class="label-2 footer-link hover-underline">Menus</a>
+              </li>
+
+              <li>
+                <a href="#about" class="label-2 footer-link hover-underline">About Us</a>
+              </li>
+              <li>
+                <a href="#" class="label-2 footer-link hover-underline">Contact</a>
+              </li>
+
+            </ul>
+
+            <ul class="footer-list">
+
+              <li>
+                <a href="https://facebook.com" class="label-2 footer-link hover-underline">Facebook</a>
+              </li>
+
+              <li>
+                <a href="https://instagram.com" class="label-2 footer-link hover-underline">Instagram</a>
+              </li>
+
+              <li>
+                <a href="https://twitter.com" class="label-2 footer-link hover-underline">Twitter</a>
+              </li>
+
+              <li>
+                <a href="https://youtube.com" class="label-2 footer-link hover-underline">Youtube</a>
+              </li>
+
+              <li>
+                <a href="#" class="label-2 footer-link hover-underline">Google Map</a>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <div class="footer-bottom">
+            <p class="copyright">&copy; 2024 Zaika . All Rights Reserved </p>
+          </div>
+
+        </div>
+      </footer>
+
+      <!-- 
+    - #BACK TO TOP
+  -->
+
+      <a href="#top" class="back-top-btn active" aria-label="back to top" data-back-top-btn>
+        <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+      </a>
+
+      <!-- 
+    - custom js link
+  -->
+      <script src="./assets/js/script.js"></script>
+
+      <!-- 
+    - ionicon link
+  -->
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authentic Restaurants</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #250114;
+      color: #333;
+      text-align: center;
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+
+    .header1 {
+      background-color: hsl(38, 61%, 73%);
+      padding: 20px;
+      font-size: 30px;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-transform: uppercase;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 2px;
+    }
+
+
+    .restaurant-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin: 20px;
+      z-index: 500;
+      margin: 40px 0;
+    }
+
+    .restaurant-card {
+      background-color: #fff;
+      width: 250px;
+      margin: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .restaurant-card img {
+      width: 100%;
+      height: 180px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .restaurant-card h3 {
+      text-align: center;
+      padding: 10px;
+      color: #250114;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup-content {
+      background-color: #250114;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 600px;
+      width: 80%;
+      max-height: 400px;
+      overflow-y: auto;
+      transition: all 0.3s ease;
+    }
+
+    .popup-content h2 {
+      color: hsl(38, 61%, 73%);
+    }
+
+    .popup-content p {
+      color: hsl(38, 61%, 73%);
+      line-height: 1.6;
+    }
+
+    .close-popup {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: hsl(38, 61%, 73%);
+    }
+
+    .famous-foods {
+      margin-top: 20px;
+      font-weight: bold;
+      color: hsl(38, 61%, 73%);
+    }
+
+    .famous-foods ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .famous-foods ul li {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="/images/mainlogo.png" width="160" height="50" alt="Zaika - Home">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <a href="/index2" class="logo">
+          <img src="/images/mainlogo.png" width="160" height="50" alt="Zaika - Home">
+        </a>
+      </nav>
+
+      <a href="/index2" class="btn btn-secondary">
+        <span class="text text-1">Back</span>
+
+        <span class="text text-2" aria-hidden="true">Back</span>
+      </a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+
+    </div>
+  </header>
+
+
+  <div class="header1">Authentic Restaurants</div>
+  <div class="separator"></div>
+  <div class="separator"></div>
+  <div class="separator"></div>
+  <div class="separator"></div>
+  <div class="separator"></div>
+  <div class="separator"></div>
+  <div class="separator"></div>
+  <div class="restaurant-container">
+    <!-- Restaurant 1 -->
+    <div class="event-card has-before hover:shine">
+      <div class="restaurant-card" onclick="openPopup('mtr')">
+        <img src="/images/authentic/mtr.jpg" alt="MTR Restaurant" loading="lazy">
+        <h3>MTR</h3>
+      </div>
+    </div>
+
+    <!-- Restaurant 2 -->
+    <div class="event-card has-before hover:shine">
+      <div class="restaurant-card" onclick="openPopup('shanthappa')">
+        <img src="/images/authentic/shantappa.jpg" alt="Shanthappa Beene Dosa" loading="lazy">
+        <h3>Shanthappa Beene Dosa</h3>
+      </div>
+    </div>
+
+    <!-- Restaurant 3 -->
+    <div class="event-card has-before hover:shine">
+      <div class="restaurant-card" onclick="openPopup('koshys')">
+        <img src="/images/authentic/koshys.jpg" alt="Koshy’s" loading="lazy">
+        <h3>Koshy’s</h3>
+      </div>
+    </div>
+
+    <!-- Restaurant 4 -->
+    <div class="event-card has-before hover:shine">
+      <div class="restaurant-card" onclick="openPopup('vidyarthi')">
+        <img src="/images/authentic/vidyarthi.jpg" alt="Vidyarthi Bhavan" loading="lazy">
+        <h3>Vidyarthi Bhavan</h3>
+      </div>
+    </div>
+
+    <!-- Restaurant 5 -->
+    <div class="event-card has-before hover:shine">
+      <div class="restaurant-card" onclick="openPopup('coffeehouse')">
+        <img src="/images/authentic/indiancoffee.jpg" alt="Indian Coffee House" loading="lazy">
+        <h3>Indian Coffee House</h3>
+      </div>
+    </div>
+
+
+    <!-- Restaurant 7 -->
+    <div class="event-card has-before hover:shine">
+      <div class="restaurant-card" onclick="openPopup('diana')">
+        <img src="/images/authentic/diana.jpg" alt="Diana Restaurant" loading="lazy">
+        <h3>Diana Restaurant</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Overlay -->
+  <div class="popup-overlay" id="popup-overlay" onclick="closePopup(event)">
+    <div class="popup-content" id="popup-content" onclick="event.stopPropagation()">
+      <span class="close-popup" onclick="closePopup()">×</span>
+      <h2 id="popup-title">Restaurant Name</h2>
+      <p id="popup-history">History content will go here...</p>
+      <div class="famous-foods" id="popup-famous-foods">
+        <p><strong>Famous Foods:</strong></p>
+        <ul id="famous-food-list">
+          <!-- Famous foods list will go here -->
+        </ul>
+      </div>
+    </div>
+  </div>
+  <footer class="footer section has-bg-image text-center"
+    style="background-image: url('./assets/images/footer-bg.jpg')">
+    <div class="container">
+
+      <div class="footer-top grid-list">
+
+        <div class="footer-brand has-before has-after">
+
+          <a href="#" class="logo">
+            <img src="/images/mainlogo.png" width="160" height="50" loading="lazy" alt="ZAIKA home">
+          </a>
+          <a href="mailto:Zaika@gamil.com" class="body-4 contact-link">Zaika@gamil.com</a>
+
+          <div class="wrapper">
+            <div class="separator"></div>
+            <div class="separator"></div>
+            <div class="separator"></div>
+          </div>
+
+          <p class="title-1">Get News & Offers</p>
+
+          <p class="label-1">
+            Subscribe us & Get <span class="span">25% Off.</span>
+          </p>
+
+          <form action="" class="input-wrapper">
+            <div class="icon-wrapper">
+              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+
+              <input type="email" name="email_address" placeholder="Your email" autocomplete="off" class="input-field">
+            </div>
+
+            <button type="submit" class="btn btn-secondary">
+              <span class="text text-1">Subscribe</span>
+
+              <span class="text text-2" aria-hidden="true">Subscribe</span>
+            </button>
+          </form>
+
+        </div>
+
+        <ul class="footer-list">
+
+          <li>
+            <a href="#logo" class="label-2 footer-link hover-underline">Home</a>
+          </li>
+
+          <li>
+            <a href="#menu" class="label-2 footer-link hover-underline">Menus</a>
+          </li>
+
+          <li>
+            <a href="#about" class="label-2 footer-link hover-underline">About Us</a>
+          </li>
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+          <li>
+            <a href="https://facebook.com" class="label-2 footer-link hover-underline">Facebook</a>
+          </li>
+
+          <li>
+            <a href="https://instagram.com" class="label-2 footer-link hover-underline">Instagram</a>
+          </li>
+
+          <li>
+            <a href="https://twitter.com" class="label-2 footer-link hover-underline">Twitter</a>
+          </li>
+
+          <li>
+            <a href="https://youtube.com" class="label-2 footer-link hover-underline">Youtube</a>
+          </li>
+
+          <li>
+            <a href="www.google.com" class="label-2 footer-link hover-underline">Google Map</a>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2024 Zaika . All Rights Reserved </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    function openPopup(restaurant) {
+      const popupOverlay = document.getElementById('popup-overlay');
+      const popupTitle = document.getElementById('popup-title');
+      const popupHistory = document.getElementById('popup-history');
+      const famousFoodList = document.getElementById('famous-food-list');
+
+      // Clear the previous list and content
+      famousFoodList.innerHTML = '';
+
+      // Set the content based on the clicked restaurant
+      if (restaurant === 'mtr') {
+        popupTitle.textContent = "MTR (Mavalli Tiffin Room)";
+        popupHistory.innerHTML = `
+          MTR, short for Mavalli Tiffin Room, was established in 1924 by the Mavalli family in Bangalore. It started as a small, local eatery serving traditional South Indian dishes, quickly gaining popularity due to its high-quality, flavorful meals. The restaurant became well-known for its delicious dosas, idlis, and vadas, alongside its unique filter coffee. Over time, MTR expanded its offerings and became a household name across India.
+        `;
+        const famousFoods = [
+          "Rava Idli",
+          "Masala Dosa",
+          "Filter Coffee"
+        ];
+        famousFoods.forEach(food => {
+          const li = document.createElement('li');
+          li.textContent = food;
+          famousFoodList.appendChild(li);
+        });
+      } else if (restaurant === 'shanthappa') {
+        popupTitle.textContent = "Shanthappa Beene Dosa";
+        popupHistory.innerHTML = `
+          Shanthappa Beené Dosa is a legendary food joint in Udupi, known for its unique style of dosas, particularly the Beené Dosa (butter dosa). The eatery was started by Shanthappa, a skilled cook with a passion for serving traditional South Indian breakfast dishes. It gained recognition for its crispy dosas that are generously smeared with ghee (clarified butter), making them extra flavorful.
+        `;
+        const famousFoods = [
+          "Beené Dosa (Butter Dosa)",
+          "Masala Dosa",
+          "Uttapam"
+        ];
+        famousFoods.forEach(food => {
+          const li = document.createElement('li');
+          li.textContent = food;
+          famousFoodList.appendChild(li);
+        });
+      } else if (restaurant === 'koshys') {
+        popupTitle.textContent = "Koshy’s";
+        popupHistory.innerHTML = `
+          Koshy’s, a historic restaurant in Bengaluru, was established in 1940 by Koshy Koshy, a Syrian Christian from Kerala. It started as a small, modest café and quickly became a favorite gathering place for locals, students, and celebrities alike. Known for serving hearty meals and a perfect cup of coffee, Koshy’s has remained a Bangalorean institution. The restaurant has a rich legacy, continuing to attract patrons with its timeless charm and classic menu.
+        `;
+        const famousFoods = [
+          "Mutton Stew with Appam",
+          "Fish Fry",
+          "Chicken Sandwich"
+        ];
+        famousFoods.forEach(food => {
+          const li = document.createElement('li');
+          li.textContent = food;
+          famousFoodList.appendChild(li);
+        });
+      } else if (restaurant === 'vidyarthi') {
+        popupTitle.textContent = "Vidyarthi Bhavan";
+        popupHistory.innerHTML = `
+          Vidyarthi Bhavan, established in 1943 by Venkatramana Ural, is a renowned vegetarian restaurant located in Gandhi Bazaar, Basavanagudi, Bengaluru. It's particularly famous for its crispy, buttery masala dosas, which have become its signature dish.
+        `;
+        const famousFoods = [
+          "Masala Dosa",
+          "Vada",
+          "Uttapam"
+        ];
+        famousFoods.forEach(food => {
+          const li = document.createElement('li');
+          li.textContent = food;
+          famousFoodList.appendChild(li);
+        });
+      } else if (restaurant === 'coffeehouse') {
+        popupTitle.textContent = "Indian Coffee House";
+        popupHistory.innerHTML = `
+          The Indian Coffee House on Church Street in Bangalore is a cherished establishment with a rich history. Originally located on M.G. Road, it was a popular spot for over 50 years before closing in 2009 due to a legal dispute over the premises.
+        `;
+        const famousFoods = [
+          "Masala Dosa",
+          "Cutlets",
+          "Filter Coffee"
+        ];
+        famousFoods.forEach(food => {
+          const li = document.createElement('li');
+          li.textContent = food;
+          famousFoodList.appendChild(li);
+        });
+      } else if (restaurant === 'diana') {
+        popupTitle.textContent = "Diana Restaurant";
+        popupHistory.innerHTML = `
+          Diana Restaurant was established in 1960 in Udupi and is known for its Gudbud ice cream. This dessert became an instant hit and is considered a local delicacy, attracting visitors from across the state and beyond.
+        `;
+        const famousFoods = [
+          "Gudbud Ice Cream"
+        ];
+        famousFoods.forEach(food => {
+          const li = document.createElement('li');
+          li.textContent = food;
+          famousFoodList.appendChild(li);
+        });
+      }
+
+      // Show the popup
+      popupOverlay.style.display = 'flex';
+    }
+
+    function closePopup(event) {
+      if (event.target === event.currentTarget || event.target.classList.contains('close-popup')) {
+        const popupOverlay = document.getElementById('popup-overlay');
+        popupOverlay.style.display = 'none'; // Hide popup
+      }
+    }
+  </script>
+</body>
+
+</html>

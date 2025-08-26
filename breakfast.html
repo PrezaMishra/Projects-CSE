@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zaika - breakfast</title>
+  <meta name="title" content="Zaika - Your Guide to nearby Culinary Treasures">
+  <meta name="description" content="This is a local cuisine finder website developed primitively">
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="image" href="/images/hero-slider-1.jpg">
+  <link rel="preload" as="image" href="/images/hero-slider-2.jpg">
+  <link rel="preload" as="image" href="/images/hero-slider-3.jpg">
+  <style>
+    body {
+         font-family: Arial, sans-serif;
+         background-color: #250114;
+       }
+       .login-form {
+         width: 300px;
+         margin: 100px auto;
+         padding: 30px;
+         background-color: rgb(76, 76, 76);
+         box-shadow: 0 0 10px rgba(211, 194, 194, 0.1);
+         border-radius: 5px;
+       }
+       h2 {
+         text-align: center;
+         margin-bottom: 20px;
+       }
+       input {
+         width: 100%;
+         padding: 10px;
+         margin: 10px 0;
+         border: 1px solid #ccc;
+         border-radius: 4px;
+       }
+       .submit-btn {
+         background-color: green;
+         color: white;
+         border: none;
+         padding: 10px;
+         width: 100%;
+         cursor: pointer;
+       }
+       .submit-btn:hover{
+         background-color: rgb(11, 83, 11);
+       }
+       .cancel-btn {
+         background-color: red;
+         color: white;
+         border: none;
+         padding: 10px;
+         width: 100%;
+         cursor: pointer;
+       }
+       .cancel-btn:hover{
+         background-color: rgb(95, 14, 14);
+       }
+
+ </style>
+</head>
+
+<body id="top">
+
+ <!-- 
+   - #PRELOADER
+ -->
+
+ <div class="preload" data-preaload>
+   <div class="circle"></div>
+   <p class="text">ZAIKA</p>
+ </div>
+
+
+
+
+
+ <!-- 
+   - #TOP BAR
+ -->
+
+ <div class="topbar">
+   <div class="container">
+     <div class="separator"></div>
+
+     <div class="separator"></div>
+
+     <a href="mailto:booking@restaurant.com" class="topbar-item link">
+       <div class="icon">
+         <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+       </div>
+
+       <span class="span">Zaika.@gmail.com</span>
+     </a>
+
+   </div>
+ </div>
+
+ <!-- 
+   - #HEADER
+ -->
+
+ <header class="header" data-header>
+   <div class="container">
+
+     <a href="#" class="logo">
+       <img src="/images/mainlogo.png" width="160" height="50" alt="Zaika - Home">
+     </a>
+
+     <nav class="navbar" data-navbar>
+
+       <button class="close-btn" aria-label="close menu" data-nav-toggler>
+         <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+       </button>
+
+       <a href="/index2" class="logo">
+         <img src="/images/mainlogo.png" width="160" height="50" alt="Zaika - Home">
+       </a>
+     </nav>
+
+     <a href="/index2" class="btn btn-secondary">
+       <span class="text text-1">Back</span>
+
+       <span class="text text-2" aria-hidden="true">Back</span>
+     </a>
+
+     <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+       <span class="line line-1"></span>
+       <span class="line line-2"></span>
+       <span class="line line-3"></span>
+     </button>
+
+     <div class="overlay" data-nav-toggler data-overlay></div>
+
+   </div>
+ </header>
+
+
+
+
+
+ <main>
+   <article>
+
+     <!-- 
+       - #HERO
+     -->
+
+     <section class="hero text-center" aria-label="home" id="home">
+
+       <ul class="hero-slider" data-hero-slider>
+
+         <li class="slider-item active" data-hero-slider-item>
+
+           <div class="slider-bg">
+             <img src="/images/hero-slider-1.jpg" width="1880" height="950" alt="" class="img-cover">
+           </div>
+
+           <p class="label-2 section-subtitle slider-reveal">Tradational & Hygine</p>
+
+           <h1 class="display-1 hero-title slider-reveal">
+             For the love of <br>
+             delicious food
+           </h1>
+           <a href="#" class="btn btn-primary slider-reveal">
+            <span class="text text-1">Breakfast</span>
+
+            <span class="text text-2" aria-hidden="true">Breakfast</span>
+          
+          
+        </a>
+
+      </li>
+
+      <li class="slider-item" data-hero-slider-item>
+
+        <div class="slider-bg">
+          <img src="/images/hero-slider-2.jpg" width="1880" height="950" alt="" class="img-cover">
+        </div>
+
+        <p class="label-2 section-subtitle slider-reveal">delightful experience</p>
+
+        <h1 class="display-1 hero-title slider-reveal">
+          Flavors Inspired by <br>
+          the Seasons
+        </h1>
+        <a href="#" class="btn btn-primary slider-reveal">
+          <span class="text text-1">Breakfast</span>
+
+          <span class="text text-2" aria-hidden="true">Breakfast</span>
+        </a>
+    
+        
+      </li>
+
+      <li class="slider-item" data-hero-slider-item>
+
+        <div class="slider-bg">
+          <img src="/images/hero-slider-3.jpg" width="1880" height="950" alt="" class="img-cover">
+        </div>
+
+        <p class="label-2 section-subtitle slider-reveal">amazing & delicious</p>
+
+        <h1 class="display-1 hero-title slider-reveal">
+          Where every flavor <br>
+          tells a story
+        </h1>
+        <a href="#" class="btn btn-primary slider-reveal">
+          <span class="text text-1">Breakfast</span>
+
+          <span class="text text-2" aria-hidden="true">Breakfast</span>
+        </a>
+    
+        
+      </li>
+
+    </ul>
+
+    <button class="slider-btn prev" aria-label="slide to previous" data-prev-btn>
+      <ion-icon name="chevron-back"></ion-icon>
+    </button>
+
+    <button class="slider-btn next" aria-label="slide to next" data-next-btn>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </button>
+
+    <a href="#" class="hero-btn has-after">
+      <img src="/images/map.gif" width="50" height="60" alt="booking icon">
+
+      <span class="label-2 text-center span">Open Maps</span>
+    </a>
+
+  </section>
+<!--breakfast-->
+<section class="section menu" aria-label="menu-label" id="menu">
+    <div class="container">
+
+           <ul class="grid-list">
+
+        <li>
+          <div class="menu-card hover:card">
+
+            <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+              <img src="\images\idli.jpg" width="200" height="200" loading="lazy"IDLI SAMBHAR
+                class="img-cover">
+            </figure>
+
+            <div>
+
+              <div class="title-wrapper">
+                <h3 class="title-3">
+                  <a href="#" class="card-title">IDLI SAMBHAR</a>
+                </h3>
+
+               
+
+              </div>
+
+              <p class="card-text label-1">
+               <br> South India, popular as a breakfast food in Southern India and in Sri Lanka. The cakes are made by steaming a batter consisting of fermented de-husked black lentils and rice.
+                 <br><a href="https://en.wikipedia.org/wiki/Idli"> MORE INFO</a>
+          
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+        <li>
+          <div class="menu-card hover:card">
+
+            <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+              <img src="\images\DOSA2.jpg" width="200" height="200" loading="lazy" alt="DOSA"
+                class="img-cover">
+                
+            </figure>
+
+            <div>
+
+              <div class="title-wrapper">
+                <h3 class="title-3">
+                  <a href="#" class="card-title">DOSA</a>
+                </h3>
+
+              </div>
+
+              <p class="card-text label-1">
+                A dosa, dose, dosai or dosha is a thin, savoury crepe in South Indian cuisine made from a fermented batter of ground black gram and rice. Dosas are served hot, often with chutney and sambar.
+                <br><a href="https://en.wikipedia.org/wiki/Dosa_(food)"> MORE INFO</a></a>
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+        <li>
+          <div class="menu-card hover:card">
+
+            <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+              <img src="\images\Aloo-Paratha-14.jpg" width="100" height="100" loading="lazy"
+                alt="ALOO PARATHA" class="img-cover">
+                           </figure>
+
+            <div>
+
+              <div class="title-wrapper">
+                <h3 class="title-3">
+                  <a href="#" class="card-title">ALOO PARATHA</a>
+                </h3>
+
+
+              </div>
+
+              <p class="card-text label-1">
+                 Aloo Paratha is made using unleavened dough rolled with a mixture of mashed potato and spices which is cooked on a hot tawa with butter or ghee.[5][6] Aloo paratha is usually served with butter, chutney, curd, or Indian pickles.
+                 <br><a href="https://en.wikipedia.org/wiki/Aloo_paratha"> MORE INFO </a>
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+        <li>
+          <div class="menu-card hover:card">
+
+            <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+              <img src="\images\poori2.jpg" width="200" height="200" loading="lazy" alt="POORI"
+                class="img-cover">
+            </figure>
+
+            <div>
+
+              <div class="title-wrapper">
+                <h3 class="title-3">
+                  <a href="#" class="card-title">POORI</a>
+                </h3>
+
+              </div>
+
+              <p class="card-text label-1">
+                Puri, also poori, is a type of deep-fried bread, made from unleavened whole-wheat flour, originated from the Indian subcontinent.Puris are most commonly served as breakfast or snacks.
+                <br><a href="https://en.wikipedia.org/wiki/Puri_(food)"> MORE INFO</a>
+                
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+        <li>
+          <div class="menu-card hover:card">
+
+            <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+              <img src="\images\Poha2.jpg" width="200" height="200" loading="lazy" alt="POHA"
+                class="img-cover">
+            </figure>
+
+            <div>
+
+              <div class="title-wrapper">
+                <h3 class="title-3">
+                  <a href="#" class="card-title">POHA</a>
+                </h3>
+
+              </div>
+
+              <p class="card-text label-1">
+                Flattened rice is a breakfast staple in South Asia where it is called poha, aval, and other names depending on the local language. It is particularly popular in India, Nepal, and Bangladesh. 
+                <br><a href="https://en.wikipedia.org/wiki/Poha"> MORE INFO</a>
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+
+        <li>
+          <div class="menu-card hover:card">
+
+            <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+              <img src="\images\puliyogare2.jpg" width="200" height="200" loading="lazy" alt="PULIYOGARE"
+                class="img-cover">
+            </figure>
+
+            <div>
+
+              <div class="title-wrapper">
+                <h3 class="title-3">
+                  <a href="#" class="card-title">PULIYOGARE</a>
+                </h3>
+
+              </div>
+
+              <p class="card-text label-1">
+                Puliyogare is a simple tamarind rice made by tempering precooked rice with spicy tamarind paste.This tamarind rice is very flavorful and tastes spicy,slightly sweet & sour. It is traditional south Indian dish.
+                <br><a href="https://en.wikipedia.org/wiki/Pulihora"> MORE INFO</a>
+
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+        <li>
+          <div class="menu-card hover:card">
+
+            <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+              <img src="\images\PULAO2.jpg" width="200" height="200" loading="lazy" alt="PULAO"
+                class="img-cover">
+            </figure>
+
+            <div>
+
+              <div class="title-wrapper">
+                <h3 class="title-3">
+                  <a href="#" class="card-title">PULAO</a>
+                </h3>
+
+              </div>
+
+              <p class="card-text label-1">
+                Pulao is usually a mixture of either lentils or vegetables, mainly including peas, potatoes, green beans, carrots with rice.
+                <br><a href="https://en.wikipedia.org/wiki/Pilaf"> MORE INFO</a>
+
+              </p>
+
+            </div>
+
+          </div>
+        </li>
+
+
+
+
+<!-- 
+- #FOOTER
+-->
+
+<!-- 
+- #BACK TO TOP
+-->
+
+<a href="#top" class="back-top-btn active" aria-label="back to top" data-back-top-btn>
+<ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+</a>
+
+<!-- 
+- custom js link
+-->
+<script src="/js/script.js"></script>
+
+<!-- 
+- ionicon link
+-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
